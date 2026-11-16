@@ -43,13 +43,13 @@ if not st.session_state.vector_store_id:
           file_id = file_response.id
 
           # 2단계: Vector Store 생성 및 파일 등록
-          vector_store = client.beta.vector_stores.create(
+          vector_store = client.vector_stores.create(
               name=f"PDF_Store_{uploaded_file.name}"
           )
           vector_store_id = vector_store.id
 
           # 파일 첨부 및 처리 완료 대기
-          client.beta.vector_stores.files.create_and_poll(
+          client.vector_stores.files.create_and_poll(
               vector_store_id=vector_store_id, file_id=file_id
           )
 
